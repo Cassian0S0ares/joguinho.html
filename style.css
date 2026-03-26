@@ -43,7 +43,7 @@
     bottom: 0;
     width: 60px;
     left: 100%;
-    animation: pipe-animations 1.5s infinite linear;
+
 }
 .mario{
     width: 130px;
@@ -51,7 +51,7 @@
     bottom: 0;
 }
 .jump{
-    animation: mario-animation 500ms ease-out;
+    animation: mario-animation 700ms ease-out;
 }
 .cloud{
     width: 500px;
@@ -81,24 +81,28 @@
 }
 @keyframes pipe-animations {
     from {
-        left: 10%; 
+        left: 110%;
     }
     to {
         left: -80px;
     }
 }
+
 @keyframes mario-animation {
     0%{
         bottom: 0;
     }
     40%{
-        bottom: 130px;
+        bottom: 150px;
     }
     50%{
-        bottom: 130px;
+        bottom: 160px;
     }
     60%{
-        bottom: 130px;
+        bottom: 150px;
+    }
+    80%{
+        bottom: 60px
     }
     100%{
         bottom: 0px;
@@ -205,4 +209,60 @@
 @keyframes piscar {
     from { opacity: 1; }
     to   { opacity: 0.3; }
+}
+/* Boss */
+.boss {
+    position: absolute;
+    font-size: 80px;
+    z-index: 5;
+    transition: filter 0.1s;
+}
+
+.boss-hit {
+    filter: brightness(5) saturate(0);
+}
+
+/* Fogo do boss */
+.boss-fireball {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 10%, #ff0 30%, #ff6600 70%, #cc0000 100%);
+    box-shadow: 0 0 10px 4px #ff6600;
+    z-index: 4;
+}
+
+/* HUD do boss */
+.boss-hud {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.5);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 24px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Aviso de boss */
+.boss-aviso {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000;
+    z-index: 10;
+    animation: piscar 0.4s infinite alternate;
+}
+.boss-img {
+    width: 120px;
+    height: auto;
 }
