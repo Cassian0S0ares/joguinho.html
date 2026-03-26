@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do mario</title>
+    <link rel="shortcut icon" href="assets/imgs/Mario-ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+        <div class="start-screen">
+        <h1>Pula mario vai 🤤</h1>
+        <button id="playBtn">▶ Play</button>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="assets/musica/Overworld Theme - Super Mario_ World.mp3" type="audio/mp3">
+    </audio>
+   <div class="game-board">
+    <h2 class="score">0</h2>
+    <img src="assets/imgs/clouds.png" class="cloud">
+    <img src="assets/imgs/mario.gif" class="mario">
+    <img src="assets/imgs/pipe.png" class="pipe">
+</div>
+        
+    </div>
+    <div class="game-over">
+        <button class="reiniciar">Perdeu otario</button>
+    </div>
+</body>
+</html>
