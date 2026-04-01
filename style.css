@@ -58,26 +58,61 @@
     position: absolute;
     animation: cloud 20s infinite linear;
 }
-.game-over{
+.game-over {
     visibility: hidden;
     display: flex;
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     justify-content: center;
     align-items: center;
-    background-color: rgba(65, 57, 57, 0.363);
+    background: rgba(0,0,0,0.7);
+    z-index: 20;
 }
-.restart{
-    height: 60px;
-    width: 350px;
-    border-radius: 10px;
+
+.game-over-box {
+    background: linear-gradient(160deg, #1a1a2e, #16213e);
+    border: 3px solid #ff4444;
+    border-radius: 20px;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: entrar-box 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-over-titulo {
+    font-size: 48px;
+    color: #ff4444;
+    text-shadow: 0 0 20px #ff0000;
+    animation: piscar 0.6s infinite alternate;
+}
+
+.game-over-sprite {
+    width: 100px;
+    image-rendering: pixelated;
+    filter: grayscale(1) brightness(0.6);
+}
+
+.game-over-msg {
+    font-size: 18px;
+    color: #aaa;
+}
+.reiniciar {
+    margin-top: 8px;
+    padding: 12px 32px;
+    font-size: 18px;
     border: none;
-    font-size: 20px;
-    background-color: blue;
+    border-radius: 12px;
+    background: #ff4444;
+    color: white;
     cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+}
+
+.reiniciar:hover {
+    transform: scale(1.06);
+    background: #ff2222;
 }
 @keyframes pipe-animations {
     from {
@@ -265,4 +300,413 @@
 .boss-img {
     width: 120px;
     height: auto;
+}
+/* Animação da moeda girando */
+@keyframes girar-moeda {
+    from { transform: scaleX(1); }
+    25%  { transform: scaleX(0.1); }
+    50%  { transform: scaleX(1); }
+    75%  { transform: scaleX(0.1); }
+    to   { transform: scaleX(1); }
+}
+
+/* Animação de coleta da moeda */
+@keyframes coletar-moeda {
+    0%   { transform: scale(1); opacity: 1; }
+    50%  { transform: scale(1.8) translateY(-20px); opacity: 0.8; }
+    100% { transform: scale(0) translateY(-50px); opacity: 0; }
+}
+
+/* Moeda voando pelo cenário */
+.coin {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    animation: girar-moeda 0.6s infinite linear;
+    z-index: 6;
+    cursor: pointer;
+}
+
+/* Efeito ao coletar */
+.coin.coletada {
+    animation: coletar-moeda 0.4s ease-out forwards;
+    pointer-events: none;
+}
+
+/* Texto +1 que aparece ao pegar moeda */
+.coin-popup {
+    position: absolute;
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 6px rgba(0,0,0,0.5);
+    z-index: 10;
+    animation: subir-popup 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes subir-popup {
+    0%   { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-60px); opacity: 0; }
+}
+.coin-icon {
+    width: 50px;
+    height: 50px;
+    margin-top: 60px;
+}
+/* Cogumelo voando pela tela */
+.mushroom {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    animation: girar-moeda 0.8s infinite linear;
+}
+
+
+/* Piscada ao levar hit sendo grande */
+@keyframes piscar-hit {
+    0%, 100%  { opacity: 1; }
+    25%, 75%  { opacity: 0.2; }
+}
+
+.mario-hit {
+    animation: piscar-hit 0.5s ease !important;
+}
+
+/* Popup do cogumelo */
+.mushroom-popup {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff4444;
+    text-shadow: 0 0 6px rgba(0,0,0,0.5);
+    z-index: 10;
+    animation: subir-popup 0.9s ease-out forwards;
+    pointer-events: none;
+}
+
+/* Ícone de escudo no HUD */
+.shield-hud {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    font-size: 26px;
+    z-index: 5;
+    animation: piscar 0.6s infinite alternate;
+    display: none;
+}
+.mario-grande {
+    width: 175px;
+    transition: width 0.2s ease;
+}
+
+.mario-grande.jump {
+    animation: mario-animation 700ms ease-out !important;
+}
+
+.mario-hit {
+    animation: piscar-hit 0.5s ease !important;
+}
+.character-select {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.character-select h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    color: #333;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.characters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 520px;
+}
+
+.char-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 3px solid transparent;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    width: 90px;
+}
+
+.char-option img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.char-option span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+}
+
+.char-option:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.6);
+}
+
+.char-option.selected {
+    border-color: #ff0000;
+    background: rgba(255,255,255,0.75);
+    transform: scale(1.1);
+}
+.tela-vitoria {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.75);
+    z-index: 20;
+}
+
+#confeti-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+.vitoria-box {
+    position: relative;
+    background: linear-gradient(160deg, #1a1a2e, #0f3460);
+    border: 3px solid #FFD700;
+    border-radius: 24px;
+    padding: 40px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: entrar-box 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+@keyframes entrar-box {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+.vitoria-titulo {
+    font-size: 40px;
+    color: #FFD700;
+    text-shadow: 0 0 20px #FFD700;
+}
+
+.vitoria-sprite {
+    width: 110px;
+    image-rendering: pixelated;
+    animation: flutuar 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flutuar {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-12px); }
+}
+
+.vitoria-nota-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,215,0,0.1);
+    border: 2px solid #FFD700;
+    border-radius: 16px;
+    padding: 8px 24px;
+}
+
+.vitoria-nota-label {
+    font-size: 16px;
+    color: #aaa;
+}
+
+.vitoria-nota {
+    font-size: 52px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 16px #FFD700;
+    animation: entrar-box 0.6s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.vitoria-nota-emoji {
+    font-size: 36px;
+}
+
+.vitoria-stats {
+    display: flex;
+    gap: 32px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-icon { font-size: 24px; }
+
+.stat-valor {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.vitoria-msg {
+    font-size: 17px;
+    color: #ccc;
+    font-style: italic;
+}
+
+.vitoria-restart {
+    margin-top: 8px;
+    padding: 12px 36px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #FFD700;
+    color: #1a1a2e;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+}
+
+.vitoria-restart:hover {
+    transform: scale(1.06);
+    background: #ffc200;
+}
+/* ── ITENS ── */
+.item-estrela,
+.item-relogio,
+.item-bomba,
+.item-luigi {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    animation: girar-moeda 0.8s infinite linear;
+}
+
+/* Piscada de invencibilidade */
+@keyframes piscar-invencivel {
+    from { filter: brightness(1) hue-rotate(0deg); }
+    to   { filter: brightness(2) hue-rotate(360deg); }
+}
+
+.mario-invencivel {
+    animation: piscar-invencivel 0.3s infinite alternate !important;
+}
+
+.mario-invencivel.jump {
+    animation: mario-animation 700ms ease-out, piscar-invencivel 0.3s infinite alternate !important;
+}
+
+/* HUD dos itens */
+.items-hud {
+    position: absolute;
+    top: 140px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+}
+
+.item-hud-slot {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,0,0,0.4);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.item-hud-slot img {
+    width: 26px;
+    height: 26px;
+    image-rendering: pixelated;
+}
+
+/* Congelamento */
+.congelado {
+    filter: hue-rotate(180deg) brightness(1.5);
+}
+
+/* Bomba no HUD */
+.bomba-hud {
+    position: absolute;
+    top: 20px;
+    right: 160px;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 12px;
+    border-radius: 20px;
+    z-index: 5;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.bomba-hud img {
+    width: 26px;
+    height: 26px;
+    image-rendering: pixelated;
+}
+
+/* Luigi assistente */
+.luigi-assistente {
+    position: absolute;
+    width: 80px;
+    image-rendering: pixelated;
+    z-index: 7;
+    bottom: 0;
+}
+
+/* Explosão da bomba */
+.explosao-bomba {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, #fff 0%, #ff0 20%, #ff6600 50%, transparent 75%);
+    border-radius: 50%;
+    animation: explodir 0.7s ease-out forwards;
+    z-index: 8;
+    pointer-events: none;
+    margin-left: -40px;
+    margin-bottom: -40px;
+}
+
+/* Texto de status */
+.status-popup {
+    position: absolute;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    z-index: 10;
+    animation: subir-popup 1s ease-out forwards;
+    pointer-events: none;
 }

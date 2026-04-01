@@ -11,6 +11,35 @@
 <body>
         <div class="start-screen">
         <h1>Pula mario vai 🤤</h1>
+        <div class="character-select">
+        <h2>Escolha seu personagem</h2>
+        <div class="characters-grid">
+            <div class="char-option selected" data-sprite="mario.gif" data-name="Mario">
+                <img src="assets/imgs/mario.gif" alt="Mario">
+                <span>Mario</span>
+            </div>
+            <div class="char-option" data-sprite="isaac.gif" data-name="Isaac">
+                <img src="assets/imgs/isaac.gif" alt="Isaac">
+                <span>Isaac</span>
+            </div>
+            <div class="char-option" data-sprite="cuphead.gif" data-name="Cuphead">
+                <img src="assets/imgs/cuphead.gif" alt="Cuphead">
+                <span>Cuphead</span>
+            </div>
+            <div class="char-option" data-sprite="castle.gif" data-name="Castle">
+                <img src="assets/imgs/castle.gif" alt="Castle">
+                <span>Castle</span>
+            </div>
+            <div class="char-option" data-sprite="blasphemous.gif" data-name="Blasphemous">
+                <img src="assets/imgs/blasphemous.gif" alt="Blasphemous">
+                <span>Blasphemous</span>
+            </div>
+            <div class="char-option" data-sprite="pikachu.gif" data-name="Pikachu">
+                <img src="assets/imgs/pikachu.gif" alt="Pikachu">
+                <span>Pikachu</span>
+            </div>
+        </div>
+    </div>
         <button id="playBtn">▶ Play</button>
     </div>
 
@@ -22,11 +51,47 @@
     <img src="assets/imgs/clouds.png" class="cloud">
     <img src="assets/imgs/mario.gif" class="mario">
     <img src="assets/imgs/pipe.png" class="pipe">
+    <div class="coins">
+    <img src="assets/imgs/moeda.png" class="coin-icon">
+    <span id="coinCount">0</span>
+</div>
 </div>
         
     </div>
     <div class="game-over">
-        <button class="reiniciar">Perdeu otario</button>
+    <div class="game-over-box">
+        <h2 class="game-over-titulo">GAME OVER</h2>
+        <img class="game-over-sprite" src="assets/imgs/mario.gif" alt="personagem">
+        <p class="game-over-msg">Você mereceu, ruim!</p>
+        <button class="reiniciar">🔄 Tentar de novo</button>
     </div>
+</div>
+
+<div class="tela-vitoria" style="display:none">
+    <canvas id="confeti-canvas"></canvas>
+    <div class="vitoria-box">
+        <h2 class="vitoria-titulo">VOCÊ VENCEU!</h2>
+        <img class="vitoria-sprite" src="" alt="personagem">
+        <div class="vitoria-nota-wrap">
+            <span class="vitoria-nota-label">Nota</span>
+            <span class="vitoria-nota">S</span>
+            <span class="vitoria-nota-emoji">🏆</span>
+        </div>
+        <div class="vitoria-stats">
+            <div class="stat-item">
+                <span class="stat-icon">🪙</span>
+                <span class="stat-valor" id="stat-moedas">0</span>
+                <span class="stat-label">moedas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-valor" id="stat-pontos">0</span>
+                <span class="stat-label">pontos</span>
+            </div>
+        </div>
+        <p class="vitoria-msg"></p>
+        <button class="vitoria-restart"> Jogar de novo</button>
+    </div>
+</div>
 </body>
 </html>
