@@ -8,7 +8,7 @@ const gameOverScreen = document.querySelector('.game-over');
 const scoreElement = document.querySelector('.score');
 const restartBtn = document.querySelector('.reiniciar');
 const gameBoard = document.querySelector('.game-board');
-let tirosFase = 100 ; 
+let tirosFase = 5; 
 // sons
 const jumpSound = new Audio("assets/musica/Super Mario World - Jump (Sound).mp3");
 const deathSound = new Audio("assets/musica/Super Mario World - Death (Player Down) SFX.mp3");
@@ -26,7 +26,8 @@ let pipeX = window.innerWidth * 1.1;
 let velocidade = 10;
 
 function moverCano() {
-    if (!jogoAtivo || bossAtivo) {
+       if (!jogoAtivo) return; // para completamente
+    if (bossAtivo) {
         requestAnimationFrame(moverCano);
         return;
     }
@@ -280,7 +281,7 @@ function atualizarBossHUD() {
 }
 
 function moverBoss() {
-    if (!bossAtivo || !bossEl) return;
+     if (!bossAtivo || !bossEl || !jogoAtivo) return;
 
     if (!congelado) bossY += bossDir * 2;
 
@@ -298,7 +299,7 @@ function moverBoss() {
 }
 
 function bossAtirar() {
-    if (!bossAtivo || !bossEl || congelado) return;
+   if (!bossAtivo || !bossEl || congelado || !jogoAtivo) return;
 
     const fogoBoss = document.createElement('div');
     fogoBoss.classList.add('boss-fireball');
