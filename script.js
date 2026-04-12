@@ -8,7 +8,7 @@ const gameOverScreen = document.querySelector('.game-over');
 const scoreElement = document.querySelector('.score');
 const restartBtn = document.querySelector('.reiniciar');
 const gameBoard = document.querySelector('.game-board');
-let tirosFase = 5; 
+let tirosFase = 200; 
 // sons
 const jumpSound = new Audio("assets/musica/Super Mario World - Jump (Sound).mp3");
 const deathSound = new Audio("assets/musica/Super Mario World - Death (Player Down) SFX.mp3");
